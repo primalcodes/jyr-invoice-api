@@ -1,0 +1,15 @@
+json.extract! invoice, :id, :payment_date, :description, :payment_term, :client_name, :client_email, :status, :created_at, :total
+
+json.senderAddress do
+  json.partial! 'addresses/address', obj: invoice.sender_address
+end
+
+json.clientAddress do
+  json.partial! 'addresses/address', obj: invoice.client_address
+end
+
+json.lineItems do
+  json.partial! partial: 'line_items/line_item', collection: invoice.line_items, as: :line_item
+end
+
+json.url invoice_url(invoice, format: :json)
