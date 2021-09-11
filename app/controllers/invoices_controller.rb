@@ -15,7 +15,8 @@ class InvoicesController < ApplicationController
   # POST /invoices.json
   def create
     @invoice = Invoice.new(invoice_params)
-
+    # @invoice.sender_address = SenderAddress.new(invoice_params[:sender_address])
+    # @invoice.client_address = ClientAddress.new(invoice_params[:client_address])
     if @invoice.save
       render :show, status: :created, location: @invoice
     else
@@ -55,8 +56,8 @@ class InvoicesController < ApplicationController
       :client_name,
       :client_email,
       :status,
-      sender_address_attributes: %i[street city post_code country],
-      client_address_attributes: %i[street city post_code country]
+      sender_address_attributes: %i[id street city post_code country],
+      client_address_attributes: %i[id street city post_code country]
     )
   end
 end
