@@ -58,7 +58,7 @@ class InvoicesController < ApplicationController
       :status,
       sender_address_attributes: %i[id street city post_code country],
       client_address_attributes: %i[id street city post_code country],
-      line_items_attributes: %i[id invoice_id quantity price]
+      line_items_attributes: %i[id name invoice_id quantity price]
     )
   end
 end
